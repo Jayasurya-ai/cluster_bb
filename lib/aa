@@ -1,0 +1,23 @@
+#include <ArduinoJson.h>
+int speed=0;
+void setup() {
+  Serial.begin(115200);
+  pinMode(5, INPUT_PULLUP);
+
+  // put your setup code here, to run once:
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+int PWR = digitalRead(POWER);
+ StaticJsonDocument<400> doc;
+  JsonObject dash = doc.as<JsonObject>();
+    doc["speed"] = speed;
+   serializeJson(doc, Serial);
+
+   Serial.println();
+    delay(10);
+    speed=speed+1;
+
+}
